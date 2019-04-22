@@ -140,9 +140,10 @@
   </el-card>
 </template>
 <script>
-  import {createCoupon,getCoupon,updateCoupon} from '@/api/coupon';
+  import {createCoupon, getCoupon, updateCoupon} from '@/api/coupon';
   import {fetchSimpleList as fetchProductList} from '@/api/product';
   import {fetchListWithChildren} from '@/api/productCate'
+
   const defaultCoupon = {
     type: 0,
     name: null,
@@ -231,7 +232,7 @@
           this.coupon=response.data;
         });
       }
-      this.getProductCateList();
+      this.getCategoryList();
     },
     methods:{
       onSubmit(formName) {
@@ -330,7 +331,7 @@
         }
         return null;
       },
-      getProductCateList() {
+      getCategoryList() {
         fetchListWithChildren().then(response => {
           let list = response.data;
           this.productCateOptions = [];

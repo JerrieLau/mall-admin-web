@@ -1,8 +1,7 @@
 <template> 
   <div>
     <el-upload
-      action="http://macro-oss.oss-cn-shenzhen.aliyuncs.com"
-      :data="dataObj"
+      :action="uploadUrl"
       list-type="picture-card"
       :file-list="fileList"
       :before-upload="beforeUpload"
@@ -20,8 +19,6 @@
   </div>
 </template>
 <script>
-  import {policy} from '@/api/oss'
-
   export default {
     name: 'multiUpload',
     props: {
@@ -35,15 +32,8 @@
     },
     data() {
       return {
-        dataObj: {
-          policy: '',
-          signature: '',
-          key: '',
-          ossaccessKeyId: '',
-          dir: '',
-          host: ''
-        },
         dialogVisible: false,
+        uploadUrl: process.env.BASE_API + "/pms/file",
         dialogImageUrl:null
       };
     },
@@ -72,24 +62,9 @@
         this.dialogImageUrl=file.url;
       },
       beforeUpload(file) {
-        let _self = this;
-        return new Promise((resolve, reject) => {
-          policy().then(response => {
-            _self.dataObj.policy = response.data.policy;
-            _self.dataObj.signature = response.data.signature;
-            _self.dataObj.ossaccessKeyId = response.data.accessKeyId;
-            _self.dataObj.key = response.data.dir + '/${filename}';
-            _self.dataObj.dir = response.data.dir;
-            _self.dataObj.host = response.data.host;
-            resolve(true)
-          }).catch(err => {
-            console.log(err)
-            reject(false)
-          })
-        })
       },
       handleUploadSuccess(res, file) {
-        this.fileList.push({url: file.name,url:this.dataObj.host + '/' + this.dataObj.dir + '/' + file.name});
+        this.fileList.push({url: file.name, url: this.uploadUrl + '/' + res.fileName});
         this.emitInput(this.fileList);
       },
       handleExceed(files, fileList) {

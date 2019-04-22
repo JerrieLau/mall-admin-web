@@ -44,36 +44,14 @@
                 v-loading="listLoading"
                 border>
         <el-table-column type="selection" width="60" align="center"></el-table-column>
-        <el-table-column label="ID" width="400" align="center">
+        <el-table-column label="主键" width="400" align="center">
           <template slot-scope="scope">{{scope.row.id}}</template>
-        </el-table-column>
-        <el-table-column label="主图" align="center">
-          <img width="100%" slot-scope="scope" :src="scope.row.pic" alt="">
         </el-table-column>
         <el-table-column label="名称" align="center">
           <template slot-scope="scope">{{scope.row.name}}</template>
         </el-table-column>
-        <el-table-column label="类目名称" align="center">
-          <template slot-scope="scope">{{scope.row.categoryName}}</template>
-        </el-table-column>
-        <el-table-column label="源产地" align="center">
-          <template slot-scope="scope">{{scope.row.origin}}</template>
-        </el-table-column>
-        <el-table-column label="特色" align="center">
-          <template slot-scope="scope">{{scope.row.feature}}</template>
-        </el-table-column>
-        <el-table-column label="供应商" align="center">
-          <template slot-scope="scope">{{scope.row.supplierName}}</template>
-        </el-table-column>
-        <el-table-column label="计价单位" align="center">
-          <template slot-scope="scope">{{scope.row.measureUnitName}}</template>
-        </el-table-column>
         <el-table-column label="操作" width="400" align="center">
           <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="handleSpecs(scope.$index, scope.row)">规格
-            </el-button>
             <el-button
               size="mini"
               @click="handleUpdate(scope.$index, scope.row)">编辑
@@ -102,14 +80,14 @@
   </div>
 </template>
 <script>
-  import {deleteById, fetchList} from '@/api/product'
+  import {fetchList, deleteById} from '@/api/measureUnit'
 
   const defaultListQuery = {
     keyword: null
   };
 
   export default {
-    name: 'product',
+    name: 'measureUnit',
     data() {
       return {
         listQuery: {
@@ -140,13 +118,8 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
-      handleSpecs(index, row) {
-        let specPath = '/pms/spec';
-        let queryParam = {id: row.id};
-        this.$router.push({path: specPath, query: queryParam});
-      },
       handleUpdate(index, row) {
-        let updatePath = '/pms/updateProduct';
+        let updatePath = '/pms/updateMeasureUnit'
         let queryParam = {id: row.id};
         this.$router.push({path: updatePath, query: queryParam});
       },
@@ -183,7 +156,7 @@
         this.listQuery = Object.assign({}, defaultListQuery);
       },
       add() {
-        let addPath = '/pms/addProduct';
+        let addPath = '/pms/addMeasureUnit';
         this.$router.push({path: addPath});
       }
     }

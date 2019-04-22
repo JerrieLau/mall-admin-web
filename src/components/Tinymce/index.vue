@@ -80,7 +80,7 @@
     },
     methods: {
       initTinymce() {
-        const _this = this
+        const _this = this;
         window.tinymce.init({
           selector: `#${this.tinymceId}`,
           width: this.width,
@@ -104,9 +104,9 @@
             if (_this.value) {
               editor.setContent(_this.value)
             }
-            _this.hasInit = true
+            _this.hasInit = true;
             editor.on('NodeChange Change KeyUp SetContent', () => {
-              this.hasChange = true
+              this.hasChange = true;
               this.$emit('input', editor.getContent())
             })
           }
@@ -124,7 +124,7 @@
         window.tinymce.get(this.tinymceId).getContent()
       },
       imageSuccessCBK(arr) {
-        const _this = this
+        const _this = this;
         arr.forEach(v => {
           window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
         })

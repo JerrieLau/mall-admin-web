@@ -4,7 +4,7 @@ import request from '@/utils/request'
 // 创建方法
 export function create(data) {
     return request({
-        url:'/pms/product',
+        url:'/pms/category',
         method:'post',
         data:data
     })
@@ -13,16 +13,34 @@ export function create(data) {
 // 查询列表方法
 export function fetchList(params) {
     return request({
-        url:'/pms/product',
+        url:'/pms/category',
         method:'get',
         params:params
     })
 }
 
+// 查询子节点方法
+export function fetchChildren(params) {
+  return request({
+    url:'/pms/category/children',
+    method:'get',
+    params:params
+  })
+}
+
+// 查询类目树
+export function fetchTree(params) {
+  return request({
+    url:'/pms/category/tree',
+    method:'get',
+    params:params
+  })
+}
+
 //　查询单条记录方法
 export function get(id) {
     return request({
-        url:'/pms/product/'+id,
+        url:'/pms/category/'+id,
         method:'get',
     })
 }
@@ -30,7 +48,7 @@ export function get(id) {
 //　更新单条记录方法
 export function update(id,data) {
     return request({
-        url:'/pms/product/'+id,
+        url:'/pms/category/'+id,
         method:'put',
         data:data
     })
@@ -39,7 +57,7 @@ export function update(id,data) {
 // 删除单条记录方法
 export function deleteById(id) {
     return request({
-        url:'/pms/product/'+id,
+        url:'/pms/category/'+id,
         method:'delete',
     })
 }

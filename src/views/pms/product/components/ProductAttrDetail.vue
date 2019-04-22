@@ -1,40 +1,7 @@
 <template>
   <div style="margin-top: 50px">
     <el-form :model="value" ref="productAttrForm" label-width="120px" style="width: 720px" size="small">
-      <el-form-item label="属性类型：">
-        <el-select v-model="value.productAttributeCategoryId"
-                   placeholder="请选择属性类型"
-                   @change="handleProductAttrChange">
-          <el-option
-            v-for="item in productAttributeCategoryOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
       <el-form-item label="商品规格：">
-        <el-card shadow="never" class="cardBg">
-          <div v-for="(productAttr,idx) in selectProductAttr">
-            {{productAttr.name}}：
-            <el-checkbox-group v-if="productAttr.handAddStatus===0" v-model="selectProductAttr[idx].values">
-              <el-checkbox v-for="item in getInputListArr(productAttr.inputList)" :label="item" :key="item"
-                           class="littleMarginLeft"></el-checkbox>
-            </el-checkbox-group>
-            <div v-else>
-              <el-checkbox-group v-model="selectProductAttr[idx].values">
-                <div v-for="(item,index) in selectProductAttr[idx].options" style="display: inline-block"
-                     class="littleMarginLeft">
-                  <el-checkbox :label="item" :key="item"></el-checkbox>
-                  <el-button type="text" class="littleMarginLeft" @click="handleRemoveProductAttrValue(idx,index)">删除
-                  </el-button>
-                </div>
-              </el-checkbox-group>
-              <el-input v-model="addProductAttrValue" style="width: 160px;margin-left: 10px" clearable></el-input>
-              <el-button class="littleMarginLeft" @click="handleAddProductAttrValue(idx)">增加</el-button>
-            </div>
-          </div>
-        </el-card>
         <el-table style="width: 100%;margin-top: 20px"
                   :data="value.skuStockList"
                   border>
@@ -100,44 +67,6 @@
           style="margin-top: 20px"
           @click="handleSyncProductSkuPrice">同步价格
         </el-button>
-      </el-form-item>
-      <el-form-item label="属性图片：" v-if="hasAttrPic">
-        <el-card shadow="never" class="cardBg">
-          <div v-for="(item,index) in selectProductAttrPics">
-            <span>{{item.name}}:</span>
-            <single-upload v-model="item.pic"
-                           style="width: 300px;display: inline-block;margin-left: 10px"></single-upload>
-          </div>
-        </el-card>
-      </el-form-item>
-      <el-form-item label="商品参数：">
-        <el-card shadow="never" class="cardBg">
-          <div v-for="(item,index) in selectProductParam" :class="{littleMarginTop:index!==0}">
-            <div class="paramInputLabel">{{item.name}}:</div>
-            <el-select v-if="item.inputType===1" class="paramInput" v-model="selectProductParam[index].value">
-              <el-option
-                v-for="item in getParamInputList(item.inputList)"
-                :key="item"
-                :label="item"
-                :value="item">
-              </el-option>
-            </el-select>
-            <el-input v-else class="paramInput" v-model="selectProductParam[index].value"></el-input>
-          </div>
-        </el-card>
-      </el-form-item>
-      <el-form-item label="商品相册：">
-        <multi-upload v-model="selectProductPics"></multi-upload>
-      </el-form-item>
-      <el-form-item label="规格参数：">
-        <el-tabs v-model="activeHtmlName" type="card">
-          <el-tab-pane label="电脑端详情" name="pc">
-            <tinymce :width="595" :height="300" v-model="value.detailHtml"></tinymce>
-          </el-tab-pane>
-          <el-tab-pane label="移动端详情" name="mobile">
-            <tinymce :width="595" :height="300" v-model="value.detailMobileHtml"></tinymce>
-          </el-tab-pane>
-        </el-tabs>
       </el-form-item>
       <el-form-item style="text-align: center">
         <el-button size="medium" @click="handlePrev">上一步，填写商品促销</el-button>
