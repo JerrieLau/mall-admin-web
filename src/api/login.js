@@ -20,7 +20,7 @@ export function getInfo() {
 
 export function logout() {
   return request({
-    url: '/admin/logout',
-    method: 'post'
+    url: '/ums/session',
+    method: 'delete'
   })
 }
