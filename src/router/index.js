@@ -140,6 +140,75 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/wms',
+    component: Layout,
+    redirect: '/wms/warehouse-stock',
+    name: 'wms',
+    meta: {title: '仓储', icon: 'total-yesterday'},
+    children: [
+      {
+        path: 'warehouse-stock',
+        name: 'warehouse-stock',
+        component: () => import('@/views/wms/warehouse-stock/index'),
+        meta: {title: '库存管理', icon: 'product-list'}
+      },
+      {
+        path: 'addWarehouseStock',
+        name: 'addWarehouseStock',
+        component: () => import('@/views/wms/warehouse-stock/add'),
+        meta: {title: '添加'},
+        hidden: true
+      },
+      {
+        path: 'updateWarehouseStock',
+        name: 'updateWarehouseStock',
+        component: () => import('@/views/wms/warehouse-stock/update'),
+        meta: {title: '编辑'},
+        hidden: true
+      },
+      {
+        path: 'warehouse',
+        name: 'warehouse',
+        component: () => import('@/views/wms/warehouse/index'),
+        meta: {title: '大仓管理', icon: 'product-list'}
+      },
+      {
+        path: 'addWarehouse',
+        name: 'addWarehouse',
+        component: () => import('@/views/wms/warehouse/add'),
+        meta: {title: '添加大仓'},
+        hidden: true
+      },
+      {
+        path: 'updateWarehouse',
+        name: 'updateWarehouse',
+        component: () => import('@/views/wms/warehouse/update'),
+        meta: {title: '编辑大仓'},
+        hidden: true
+      },
+      {
+        path: 'station',
+        name: 'station',
+        component: () => import('@/views/wms/station/index'),
+        meta: {title: '站点管理', icon: 'product-list'}
+      },
+      {
+        path: 'addStation',
+        name: 'addStation',
+        component: () => import('@/views/wms/station/add'),
+        meta: {title: '添加站点'},
+        hidden: true
+      },
+      {
+        path: 'updateStation',
+        name: 'updateStation',
+        component: () => import('@/views/wms/station/update'),
+        meta: {title: '编辑站点'},
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/oms',
     component: Layout,
     redirect: '/oms/order',
@@ -193,8 +262,77 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/ums',
+    component: Layout,
+    redirect: '/ums/admin',
+    name: 'wms',
+    meta: {title: '用户', icon: 'total-yesterday'},
+    children: [
+      {
+        path: 'admin',
+        name: 'admin',
+        component: () => import('@/views/ums/admin/index'),
+        meta: {title: '用户管理', icon: 'user'}
+      },
+      {
+        path: 'addAdmin',
+        name: 'addAdmin',
+        component: () => import('@/views/ums/admin/add'),
+        meta: {title: '添加'},
+        hidden: true
+      },
+      {
+        path: 'updateAdmin',
+        name: 'updateAdmin',
+        component: () => import('@/views/ums/admin/update'),
+        meta: {title: '编辑'},
+        hidden: true
+      },
+      {
+        path: 'role',
+        name: 'role',
+        component: () => import('@/views/ums/role/index'),
+        meta: {title: '角色管理', icon: 'product-list'}
+      },
+      {
+        path: 'addRole',
+        name: 'addRole',
+        component: () => import('@/views/ums/role/add'),
+        meta: {title: '添加'},
+        hidden: true
+      },
+      {
+        path: 'updateRole',
+        name: 'updateRole',
+        component: () => import('@/views/ums/role/update'),
+        meta: {title: '编辑'},
+        hidden: true
+      },
+      {
+        path: 'admin-login-log',
+        name: 'admin-login-log',
+        component: () => import('@/views/ums/admin-login-log/index'),
+        meta: {title: '登录日志管理', icon: 'product-list'}
+      },
+      {
+        path: 'addAdminLoginLog',
+        name: 'addAdminLoginLog',
+        component: () => import('@/views/ums/admin-login-log/add'),
+        meta: {title: '添加'},
+        hidden: true
+      },
+      {
+        path: 'updateAdminLoginLog',
+        name: 'updateAdminLoginLog',
+        component: () => import('@/views/ums/admin-login-log/update'),
+        meta: {title: '编辑'},
+        hidden: true
+      }
+    ]
+  },
   {path: '*', redirect: '/404', hidden: true}
-]
+];
 
 export default new Router({
   // mode: 'history', //后端支持可开

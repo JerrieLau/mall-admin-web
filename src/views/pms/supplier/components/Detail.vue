@@ -8,10 +8,10 @@
         <el-input v-model="supplier.contact"></el-input>
       </el-form-item>
       <el-form-item label="联系电话：" prop="tel">
-        <el-input v-model="supplier.tel"></el-input>
+        <el-input type="tel" v-model.tel="supplier.tel"></el-input>
       </el-form-item>
       <el-form-item label="电子邮箱：" prop="email">
-        <el-input v-model="supplier.email"></el-input>
+        <el-input type="email" v-model.email="supplier.email"></el-input>
       </el-form-item>
       <el-form-item label="对公账户户名：" prop="bankAccountName">
         <el-input v-model="supplier.bankAccountName"></el-input>
@@ -119,6 +119,7 @@
                     type: 'success',
                     duration:1000
                   });
+                  this.$router.back();
                 });
               }
             });
