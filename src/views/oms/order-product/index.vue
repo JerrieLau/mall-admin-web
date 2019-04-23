@@ -42,29 +42,31 @@
                 style="width: 100%"
                 @selection-change="handleSelectionChange"
                 v-loading="listLoading"
-                :row-class-name="tableRowClassName"
                 border>
         <el-table-column type="selection" width="60" align="center"></el-table-column>
         <el-table-column label="标识" width="400" align="center">
           <template slot-scope="scope">{{scope.row.id}}</template>
         </el-table-column>
-        <el-table-column label="商品" align="center">
+        <el-table-column label="订单标识" align="center">
+          <template slot-scope="scope">{{scope.row.orderId}}</template>
+        </el-table-column>
+        <el-table-column label="商品标识" align="center">
+          <template slot-scope="scope">{{scope.row.productId}}</template>
+        </el-table-column>
+        <el-table-column label="规格标识" align="center">
+          <template slot-scope="scope">{{scope.row.specId}}</template>
+        </el-table-column>
+        <el-table-column label="商品名称" align="center">
           <template slot-scope="scope">{{scope.row.productName}}</template>
         </el-table-column>
-        <el-table-column label="规格" align="center">
+        <el-table-column label="规格名称" align="center">
           <template slot-scope="scope">{{scope.row.specName}}</template>
         </el-table-column>
-        <el-table-column label="库存" align="center">
-          <template slot-scope="scope">{{scope.row.stock}}</template>
+        <el-table-column label="商品个数" align="center">
+          <template slot-scope="scope">{{scope.row.productCount}}</template>
         </el-table-column>
-        <el-table-column label="最小库存" align="center">
-          <template slot-scope="scope">{{scope.row.minStock}}</template>
-        </el-table-column>
-        <el-table-column label="销量" align="center">
-          <template slot-scope="scope">{{scope.row.sale}}</template>
-        </el-table-column>
-        <el-table-column label="单次补仓量" align="center">
-          <template slot-scope="scope">{{scope.row.supply}}</template>
+        <el-table-column label="商品价格" align="center">
+          <template slot-scope="scope">{{scope.row.productPrice}}</template>
         </el-table-column>
         <el-table-column label="操作" width="400" align="center">
           <template slot-scope="scope">
@@ -96,14 +98,14 @@
   </div>
 </template>
 <script>
-  import {deleteById, fetchList} from '@/api/warehouseStock'
+  import {fetchList, deleteById} from '@/api/orderProduct'
 
   const defaultListQuery = {
     keyword: null
   };
 
   export default {
-    name: 'warehouseStock',
+    name: 'orderProduct',
     data() {
       return {
         listQuery: {
@@ -135,7 +137,7 @@
         this.multipleSelection = val;
       },
       handleUpdate(index, row) {
-        let updatePath = '/wms/updateWarehouseStock'
+        let updatePath = '/oms/updateOrderProduct'
         let queryParam = {id: row.id};
         this.$router.push({path: updatePath, query: queryParam});
       },
@@ -172,23 +174,15 @@
         this.listQuery = Object.assign({}, defaultListQuery);
       },
       add() {
-        let addPath = '/wms/addWarehouseStock';
+        let addPath = '/oms/addOrderProduct';
         this.$router.push({path: addPath});
-      },
-      tableRowClassName({row, rowIndex}) {
-        if (row.stock <= row.minStock) {
-          return 'warning-row';
-        } else {
-          return '';
-        }
       }
     }
   }
 </script>
-<style>
-  .el-table .warning-row {
-    background: oldlace;
-  }
+<style rel="stylesheet/scss" lang="scss" scoped>
+
+;
 </style>
 
 

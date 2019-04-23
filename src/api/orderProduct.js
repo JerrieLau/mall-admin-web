@@ -4,7 +4,7 @@ import request from '@/utils/request'
 // 创建方法
 export function create(data) {
     return request({
-        url:'/oms/order',
+        url:'/oms/order-product',
         method:'post',
         data:data
     })
@@ -13,7 +13,7 @@ export function create(data) {
 // 查询列表方法
 export function fetchList(params) {
     return request({
-        url:'/oms/order',
+        url:'/oms/order-product',
         method:'get',
         params:params
     })
@@ -22,7 +22,7 @@ export function fetchList(params) {
 //　查询单条记录方法
 export function get(id) {
     return request({
-        url:'/oms/order/'+id,
+        url:'/oms/order-product/'+id,
         method:'get',
     })
 }
@@ -30,7 +30,7 @@ export function get(id) {
 //　更新单条记录方法
 export function update(id,data) {
     return request({
-        url:'/oms/order/'+id,
+        url:'/oms/order-product/'+id,
         method:'put',
         data:data
     })
@@ -39,7 +39,7 @@ export function update(id,data) {
 // 删除单条记录方法
 export function deleteById(id) {
     return request({
-        url:'/oms/order/'+id,
+        url:'/oms/order-product/'+id,
         method:'delete',
     })
 }

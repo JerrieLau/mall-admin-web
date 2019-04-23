@@ -213,52 +213,47 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/oms/order',
     name: 'oms',
-    meta: {title: '订单', icon: 'order'},
+    meta: {title: '订单', icon: 'total-yesterday'},
     children: [
       {
         path: 'order',
         name: 'order',
         component: () => import('@/views/oms/order/index'),
-        meta: {title: '订单列表', icon: 'product-list'}
+        meta: {title: '订单管理', icon: 'product-list'}
       },
       {
-        path: 'orderDetail',
-        name: 'orderDetail',
-        component: () => import('@/views/oms/order/orderDetail'),
-        meta: {title: '订单详情'},
-        hidden:true
+        path: 'addOrder',
+        name: 'addOrder',
+        component: () => import('@/views/oms/order/add'),
+        meta: {title: '添加订单'},
+        hidden: true
       },
       {
-        path: 'deliverOrderList',
-        name: 'deliverOrderList',
-        component: () => import('@/views/oms/order/deliverOrderList'),
-        meta: {title: '发货列表'},
-        hidden:true
+        path: 'updateOrder',
+        name: 'updateOrder',
+        component: () => import('@/views/oms/order/update'),
+        meta: {title: '编辑订单'},
+        hidden: true
       },
       {
-        path: 'orderSetting',
-        name: 'orderSetting',
-        component: () => import('@/views/oms/order/setting'),
-        meta: {title: '订单设置', icon: 'order-setting'}
+        path: 'order-product',
+        name: 'order-product',
+        component: () => import('@/views/oms/order-product/index'),
+        meta: {title: '订单商品管理', icon: 'product-list'}
       },
       {
-        path: 'returnApply',
-        name: 'returnApply',
-        component: () => import('@/views/oms/apply/index'),
-        meta: {title: '退货申请处理', icon: 'order-return'}
+        path: 'addOrderProduct',
+        name: 'addOrderProduct',
+        component: () => import('@/views/oms/order-product/add'),
+        meta: {title: '添加订单商品'},
+        hidden: true
       },
       {
-        path: 'returnReason',
-        name: 'returnReason',
-        component: () => import('@/views/oms/apply/reason'),
-        meta: {title: '退货原因设置', icon: 'order-return-reason'}
-      },
-      {
-        path: 'returnApplyDetail',
-        name: 'returnApplyDetail',
-        component: () => import('@/views/oms/apply/applyDetail'),
-        meta: {title: '退货原因详情'},
-        hidden:true
+        path: 'updateOrderProduct',
+        name: 'updateOrderProduct',
+        component: () => import('@/views/oms/order-product/update'),
+        meta: {title: '编辑订单商品'},
+        hidden: true
       }
     ]
   },
@@ -266,7 +261,7 @@ export const constantRouterMap = [
     path: '/ums',
     component: Layout,
     redirect: '/ums/admin',
-    name: 'wms',
+    name: 'ums',
     meta: {title: '用户', icon: 'total-yesterday'},
     children: [
       {
